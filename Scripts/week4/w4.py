@@ -46,7 +46,7 @@ def preprocess_input(x, dim_ordering='default'):
 
 print("Checkpoint 3")
 # create the base pre-trained model
-base_model = MobileNet(weights='imagenet')
+base_model = MobileNet(weights='imagenet', dropout=0.5)
 plot_model(base_model, to_file='modelVGG16a.png', show_shapes=True, show_layer_names=True)
 
 x = base_model.layers[-2].output
@@ -114,10 +114,10 @@ history=model.fit_generator(train_generator,
         validation_steps= (int(validation_samples//batch_size)+1), callbacks=[tbCallBack])
 
 
-result = model.evaluate_generator(test_generator, val_samples=validation_samples)
+# result = model.evaluate_generator(test_generator, val_samples=validation_samples)
 print("Checkpoint 8")
 
-print( result)
+# print( result)
 
 
 # list all data in history
